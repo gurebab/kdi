@@ -35,6 +35,16 @@ $(document).ready(function(){
         $(this).addClass("active");
     });
 
+    $(".m_2depth_list li a").click(function(){
+        console.log("됨");
+        $(".m_2depth_list li a").removeClass("open");
+        $(this).next().slideToggle(0);
+        $(this).addClass("open");
+        $(".m_2depth_list li a").not(this).next().slideUp(0);
+    return false;
+    });
+    
+
     //지도 이벤트
     $(function(){
         $(".section05 .inner .con div .map a").click(function(){
@@ -53,6 +63,43 @@ $(document).ready(function(){
             var thisInd = $(this).index()+1;
             $(".section05 .inner .con div .map").removeClass("map0"+thisInd);
         });
+    });
+
+    //스크롤이벤트
+    $(window).scroll(function(){
+        var scr = $(window).scrollTop();
+        var section02_scr = $(".section02").offset().top - 400;
+        var section03_scr = $(".section03").offset().top - 600;
+        var section04_scr = $(".section04").offset().top - 400;
+        var section05_scr = $(".section05").offset().top - 400;
+        if(scr >= section02_scr){
+            $(".section02 .item_wrap li").removeClass("scroll_mov");
+        }else{
+            $(".section02 .item_wrap li").addClass("scroll_mov");
+        }
+        if(scr >= section03_scr){
+            $(".section03 .text_wrap").removeClass("scroll_mov");
+            $(".section03 .btn_wrap .btn_go").removeClass("scroll_mov");
+            $(".section03 .btn_wrap .section03_img").removeClass("scroll_mov");
+            $(".section03 .section03_name").removeClass("scroll_mov");
+        }else{ 
+            $(".section03 .text_wrap").addClass("scroll_mov");
+            $(".section03 .btn_wrap .btn_go").addClass("scroll_mov");
+            $(".section03 .btn_wrap .section03_img").addClass("scroll_mov");
+            $(".section03 .section03_name").addClass("scroll_mov");
+         }
+         if(scr >= section04_scr){
+            $(".section04 .section04_inner .item").removeClass("scroll_mov");
+        }else{
+            $(".section04 .section04_inner .item").addClass("scroll_mov");
+        }
+        if(scr >= section05_scr){
+            $(".section05 .inner .detail_wrap").removeClass("scroll_mov");
+            $(".section05 .text_wrap").removeClass("scroll_mov");
+        }else{
+            $(".section05 .inner .detail_wrap").addClass("scroll_mov");
+            $(".section05 .text_wrap").addClass("scroll_mov");
+        }
     });
 
 });
